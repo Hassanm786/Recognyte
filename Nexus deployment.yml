@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nexus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nexus
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - name: nexus
+        image: sonatype/nexus3
+        volumeMounts:
+        - name: google-credentials
+          mountPath: /run/secrets/
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /run/secrets/google_application_credentials
+      volumes:
+      - name: google-credentials
+        secret:
+          secretName: google-credentials
+      command: ["/bin/bash"]
+      args:
+      - cp /nexus-blobstore-google-cloud-0.0.6-SNAPSHOT.jar /opt/sonatype/nexus/system/org/sonatype/nexus/plugins/nexus-blobstore-google-cloud/0.0.6-SNAPSHOT/
