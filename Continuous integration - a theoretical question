@@ -1,1 +1,2 @@
-### for automatic deployment to a test env, we can set up a CI pipeline. we can do this using Jenkins, Travis CI or even CircleCI which can be configured to integrate with git.
+for automatic deployment to a test env, we can set up a CI pipeline. we can do this using Jenkins, Travis CI or even CircleCI which can be configured to integrate with git.
+### Objective 
